@@ -99,7 +99,7 @@ function(att_target_platform_definitions target)
         # MSVC flags for runtime performance over size, and suggest more aggressive inline functioning to compiler. /favor:AMD64 or INTEL64 may benefit.
         # Eigen3 note: /arch:AVX causes crash with Refine tracker calibration, due to Eigen3. 16-byte memory alignment might fix, possibly worse performance than default SSE2.
         # You can set /arch to AVX, AVX2 or AVX512 if you don't use calibration refinement. This should increase vectorized loop performance noticably.
-		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2 /Ob3 /GA /GL /Qpar /Qpar-report:1 /Qvec-report:1" PARENT_SCOPE)
+        set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2 /Ob3 /GA /GL /Qpar /Qpar-report:1 /Qvec-report:1" PARENT_SCOPE)
         # Additional linker optimizations as compiler output recommends /LTCG with /GL
         set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /OPT:REF /OPT:ICF=6 /OPT:LBR /LTCG" PARENT_SCOPE)
         set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /OPT:REF /OPT:ICF=6 /OPT:LBR /LTCG" PARENT_SCOPE)
