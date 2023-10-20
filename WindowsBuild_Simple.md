@@ -7,13 +7,15 @@ __2-__ Copy paste this into the address bar of your browser, to clone and open t
 git-client://clone?repo=https%3A%2F%2Fgithub.com%2Fju1ce%2FApril-Tag-VR-FullBody-Tracker
 ```
 
-![image](https://github.com/Skyrion9/UnityDemoProject2D/assets/74653117/ad1dce61-d02a-4ba4-b0f2-1fdfa20347b3)
+![image](https://github.com/Skyrion9/April-Tag-VR-FullBody-Tracker/assets/74653117/59955543-1596-4e4a-b804-5a1c8000b3cc)
+
 
 
 
 We'll switch to Folder view so VS will recognize the project properly. Click on the leftmost icon in Solution Explorer, and click on Folder View.
 
-![image](https://github.com/Skyrion9/UnityDemoProject2D/assets/74653117/6fd3ffa6-6c25-481e-a2ea-c852c5cdcda9)
+![image](https://github.com/Skyrion9/April-Tag-VR-FullBody-Tracker/assets/74653117/6c675ca3-c60d-46e8-9c72-ffb421c78895)
+
 
 
 
