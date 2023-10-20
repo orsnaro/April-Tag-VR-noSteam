@@ -67,7 +67,7 @@ Otherwise try ApriltagVR's discord. You'll get better help there. Reminder @yoyo
 
 __6-__ Why are your files large?
 ~~They contain crypto miners~~ 
-My builds utilize [optimized compiler flags that increase speed at a size cost](https://github.com/Skyrion9/April-Tag-VR-FullBody-Tracker/commit/d00a0411700d79b631ed62507400e0edd9c46e3f), have reduced function calls and may improve performance. This build is larger than the 0.7.1 official build by about 11 MB for *work* and 22 MB for *personal*. 
+My builds utilize [optimized compiler flags that increase speed at a size cost](https://github.com/Skyrion9/April-Tag-VR-FullBody-Tracker/commit/d00a0411700d79b631ed62507400e0edd9c46e3f), have reduced function calls and may improve performance. This build is larger than the 0.7.1 official build by about 11 MB for *work* and 22 MB for *personal*. Though build tools used and many changes not included in the latest official release will also add to this effect.
 It might reduce the CPU overhead and it's nice to have for weaker CPUs like mine. The only downside is increased file size. Especially helpful for multi-instance multi-camera setups.
 I've ~5% CPU usage with previews disabled on a ryzen 1600 with AVX2 and 2 trackers actively being tracked. 
 
