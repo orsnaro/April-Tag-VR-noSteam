@@ -21,7 +21,7 @@ We'll switch to Folder view so VS will recognize the project properly. Click on 
 
 
 
-__4-__ Let it rip. Hopefully it'll finish without errors. When you get output : ```CMake generation finished```, proceed to next step. If you got CXX compiler errors after the line ```[CMake] -- Running vcpkg install - done``` ignore those. VS is trying to use an incorrect install build configuration (of its own making). Remember you can CTRL+F and search for the outputs mentioned here, as the output window can get cluttered.
+__4-__ Let it rip. Hopefully it'll finish without errors. When you get output : ```[CMake] -- Running vcpkg install - done```, proceed to next step. If you got CXX compiler errors after that line ignore those. VS is trying to use an incorrect install build configuration (of its own making). Remember you can CTRL+F and search for the output mentioned here, as the output window can get cluttered. What's important is vcpkg install finishing.
 
 If you got 1> [CMake] CMake Error at scripts/cmake/vcpkg_acquire_msys.cmake:150 (file):
 
