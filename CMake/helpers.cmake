@@ -34,14 +34,14 @@ function(att_bootstrap_vcpkg)
     ## If Vcpkg is already installed and set in Windows Environment, stick with it and don't enforce in-house vcpkg.
 	## Removes the possibility of vcpkg git errors, it is faster and compiles successfully. (VS 2022 17.7.5) 
 	if(NOT "${vcpkg_default_root}" STREQUAL "$ENV{VCPKG_ROOT}" AND WIN32)
-    if (NOT EXISTS "${vcpkg_bootstrap_cmd}")
-        find_program(GIT_CMD git REQUIRED)
-        execute_process(COMMAND "${GIT_CMD}" clone --filter=tree:0 "https://github.com/microsoft/vcpkg.git" "${VCPKG_ROOT}")
+	   if (NOT EXISTS "${vcpkg_bootstrap_cmd}")
+		   find_program(GIT_CMD git REQUIRED)
+		   execute_process(COMMAND "${GIT_CMD}" clone --filter=tree:0 "https://github.com/microsoft/vcpkg.git" "${VCPKG_ROOT}")
 
-        if (NOT EXISTS "${vcpkg_bootstrap_cmd}")
-            message(FATAL_ERROR "failed to clone vcpkg")
-        endif()
-    endif()
+		   if (NOT EXISTS "${vcpkg_bootstrap_cmd}")
+			message(FATAL_ERROR "failed to clone vcpkg")
+		   endif()
+	    endif()
 	endif()
 
     if (NOT EXISTS "${vcpkg_cmd}")
@@ -81,7 +81,7 @@ function(att_default_triplet out_triplet)
     set(${out_triplet} "${triplet}" PARENT_SCOPE)
 endfunction()
 
-# adds definitions ATT_OS_<NAME> and ATT_COMP_<NAME>
+# adds definitions ATT_OS_<NAME> and ATT_COMP_<NAME>, and specifies compiler-specific optimization flags that prefer runtime performance over size, non-destructive.
 function(att_target_platform_definitions target)
     if (WIN32)
         set(os_name "WINDOWS")
@@ -95,10 +95,24 @@ function(att_target_platform_definitions target)
 
     if (MSVC)
         set(comp_name "MSVC")
+        # Note that any flag specified in build command will overwrite these. Treat them as safe defaults.
+        # MSVC flags for runtime performance over size, and suggest more aggressive inline functioning to compiler. /favor:AMD64 or INTEL64 may benefit.
+        # Eigen3 note: /arch:AVX causes crash with Refine tracker calibration, due to Eigen3. 16-byte memory alignment might fix, possibly worse performance than default SSE2.
+        # You can set /arch to AVX, AVX2 or AVX512 if you don't use calibration refinement. This should increase vectorized loop performance noticably.
+		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2 /Ob3 /GA /GL /Qpar /Qpar-report:1 /Qvec-report:1" PARENT_SCOPE)
+        # Additional linker optimizations as compiler output recommends /LTCG with /GL
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /OPT:REF /OPT:ICF=6 /OPT:LBR /LTCG" PARENT_SCOPE)
+        set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /OPT:REF /OPT:ICF=6 /OPT:LBR /LTCG" PARENT_SCOPE)
+        set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} /OPT:REF /OPT:ICF=6 /OPT:LBR /LTCG" PARENT_SCOPE)
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         set(comp_name "CLANG")
+        # Clang compiler flags for release. Runtime performance over size. O3 is higher level, but placebo in most cases and increases code size unnecessarily. Should be profiled first. 
+        # TODO : Investigate linker flags for CLang and GCC compilers, and test ftree-vectorize along with fvect-cost-model. flto is experimental but could help.
+        set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2" PARENT_SCOPE)
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
         set(comp_name "GCC")
+        # GCC compiler flags for release. Runtime performance over size. O3 is higher level, but placebo in most cases and increases code size unnecessarily. Should be profiled first.
+        set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2" PARENT_SCOPE)
     else()
         set(comp_name "UNKNOWN")
     endif()
