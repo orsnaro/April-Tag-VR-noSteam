@@ -2,7 +2,7 @@ Compile steps for Windows:
 
 __1-__ Download and install Visual Studio 2022 17.8 Preview 2 or newer [(This includes a Msys fix we need)](https://github.com/microsoft/vcpkg/issues/31565#issuecomment-1723267213), check enable building for C/C++ desktop applications during installation.
 
-__2-__ Copy paste this into the address bar of your browser, to clone and open the master branch in VS2022. When it finishes, choose an SDK version similar to mine. You'll have 2 to pick from on a default installation, newer version is Windows 11 SDK, the other Windows 10.
+__2-__ Copy paste this into the address bar of your browser, to clone and open the master branch in VS2022. When it finishes, confirm Retargeting as shown.
 ```
 git-client://clone?repo=https%3A%2F%2Fgithub.com%2Fju1ce%2FApril-Tag-VR-FullBody-Tracker
 ```
@@ -21,7 +21,7 @@ We'll switch to Folder view so VS will recognize the project properly. Click on 
 
 
 
-__4-__ Let it rip. Hopefully it'll finish without errors. When you get output : ```CMake generation finished```, proceed to next step. If you got CCX compiler errors after the line ```Vcpkg install - done``` ignore this. VS is trying to use an incorrect install build configuration (of its own making).
+__4-__ Let it rip. Hopefully it'll finish without errors. When you get output : ```CMake generation finished```, proceed to next step. If you got CXX compiler errors after the line ```[CMake] -- Running vcpkg install - done``` ignore those. VS is trying to use an incorrect install build configuration (of its own making). Remember you can CTRL+F and search for the outputs mentioned here, as the output window can get cluttered.
 
 If you got 1> [CMake] CMake Error at scripts/cmake/vcpkg_acquire_msys.cmake:150 (file):
 
@@ -42,7 +42,7 @@ __1-__ I still can't compile
 
 Either use a precompiled exe from Release, or make sure to follow each step exactly, Without alternating to different IDEs etc. Pay attention to Output window and fix anything missing. It's usually a vcpkg bug. In case of missing directory errors, double check your Windows Environment path and add any missing paths that show up in the output. Remember to restart VS and regenerate cache so path changes are recognized.
 
-Keep in mind, if you get errors at step 4 you can still try step 5. We only need VS to prepare the dependencies for us. It might fail to build, but we bypass this by using the powershell terminal command. You still need to make sure it succeeds in installing vcpkg in the very least ```Vcpkg install - done```
+Keep in mind, if you get errors at step 4 you can still try step 5. We only need VS to prepare the dependencies for us. It might fail to build, but we bypass this by using the powershell terminal command. You still need to make sure it succeeds in installing vcpkg in the very least ```[CMake] -- Running vcpkg install - done```
 
 __1.1-__ If you've an error related to Powershell, I recommend installing Powershell 7. Add it to your User ENV path (Regardless of installation ENV setting. As it adds to System path, but I had to manually add it to User ENV. Alternatively, running VS as admin might fix this and break some other things.) Sometimes VS installer clears up your path.
 
