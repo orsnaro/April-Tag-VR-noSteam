@@ -3,7 +3,7 @@
 The difference from main program is some tracking improvements and fixes.
 Since @yoyobuae doesn't compile for Windows and these fixes will likely never hit Master due to refactoring, I've compiled and released the windows executables to save you the trouble.
 
-### User note : If you just want to run this program on Windows just use an exe from Releases.
+### User note : If you just want to run this program on [Windows just use an exe from Releases.](https://github.com/Skyrion9/April-Tag-VR-FullBody-Tracker/releases)
 Features of __work__ branch:
 Optimized build flags, updated exposure script.
 Improved tracker calibration, reduces tracker misalignment especially noticable with dodecahedron or cubic tracker setups. (@yoyobuae)
