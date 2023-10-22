@@ -147,6 +147,11 @@ if(ATT_ENABLE_ASAN)
     att_target_enable_asan(AprilTagTrackers)
 endif()
 
+# Build with MSVC-specific code optimization flags for release.
+if(ATT_ENABLE_MSVC_OPTIMIZATION_FLAGS)
+    att_target_msvc_release_flags(AprilTagTrackers)
+endif()
+
 # Precompiled std and library headers
 target_precompile_headers(AprilTagTrackers PRIVATE pch.hpp)
 

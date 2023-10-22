@@ -44,6 +44,7 @@ option(ATT_INSTALL_RESOURCES "Copy various required resources to install" ON)
 option(ATT_ENABLE_DRIVER "Build and install the BridgeDriver" ON)
 option(ATT_DEBUG "Developer mode. Enable custom assert, debug logging, and debugger support. Can be used in release build." OFF)
 option(ATT_ENABLE_ASAN "Build with address sanitizer" OFF)
+option(ATT_ENABLE_MSVC_OPTIMIZATION_FLAGS "Additional MSVC compiler optimization flags for release build." ON)
 set(ATT_LOG_LEVEL "1" CACHE STRING "0 - Silent, 1 - Info, 2 - Debug")
 option(ATT_TEST_ENABLE_ASAN "Build tests with address sanitizer" ON)
 
