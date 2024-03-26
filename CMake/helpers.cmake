@@ -110,6 +110,22 @@ function(att_target_platform_definitions target)
     )
 endfunction()
 
+#orsnaro NOTE: (set SIMSUIT OSC protocol enforcer macro)
+function(simsuit_compile_definitions target)
+    target_compile_definitions(${target} PRIVATE FORCE_OSC)
+    #add_compile_definitions(FORCE_OSC = 1)
+endfunction()
+
+function(simsuit_links target)
+    #CMAKE_SOURCE_DIR != CMAKE_CURRENT_SOURCE_DIR
+    target_link_libraries("${target}" PUBLIC "${CMAKE_SOURCE_DIR}/liblo/x64-Debug-vs2022win64generator/Debug/liblo.lib")
+    #target_link_libraries("${target}" PUBLIC "${CMAKE_SOURCE_DIR}/liblo/x64-Debug-vs2022win64generator/Debug/liblo.dll")
+
+    target_include_directories("${target}" PUBLIC "${CMAKE_SOURCE_DIR}/liblo/x64-Debug-vs2022win64generator")
+    #include_directories("${target}" PUBLIC "${CMAKE_SOURCE_DIR}/liblo/x64-Debug-vs2022win64generator")
+endfunction()
+
+
 # Set the CRT linkage on windows, by setting MSVC_RUNTIME_LIBRARY property
 # set STATIC (/MT) or DYNAMIC (/MD)
 function(att_target_crt_linkage target)
@@ -280,6 +296,7 @@ function(att_clone_submodule module_dir)
     endif()
     message(STATUS "Cloning submodule '${module_dir}'")
     execute_process(
+		  #message(STATUS "Submodule ${abs_module_dir}")
         COMMAND "${GIT_CMD}" submodule --quiet update --init --recursive "${abs_module_dir}"
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
     if (NOT EXISTS "${abs_module_dir}/.git")

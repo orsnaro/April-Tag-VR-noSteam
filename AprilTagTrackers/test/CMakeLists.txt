@@ -17,6 +17,9 @@ set(ATT_TEST_SOURCES
 if (WIN32)
     list(APPEND ATT_TEST_SOURCES
         IPC/WindowsNamedPipe.cpp
+        #ORSNARO EDIT: OSC sources
+        IPC/OSC.cpp
+        IPC/OSC_utils.cpp
     )
 else()
     list(APPEND ATT_TEST_SOURCES
@@ -61,6 +64,7 @@ target_compile_definitions(test PRIVATE
 )
 
 att_target_platform_definitions(test)
+simsuit_compile_definitions(test)
 
 # ====== Compiler Options ======
 

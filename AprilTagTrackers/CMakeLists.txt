@@ -45,6 +45,10 @@ target_sources(AprilTagTrackers PRIVATE
 if (WIN32)
     target_sources(AprilTagTrackers PRIVATE
         IPC/WindowsNamedPipe.cpp
+        IPC/OSC.cpp
+        IPC/OSC_utils.cpp
+        #../liblo\x64-Debug-vs2022win64generator\Debug\liblo.dll
+        # ORSNARO Edit
     )
 elseif(UNIX)
     target_sources(AprilTagTrackers PRIVATE
@@ -95,11 +99,17 @@ target_compile_definitions(AprilTagTrackers PRIVATE
 
 att_target_platform_definitions(AprilTagTrackers)
 
+simsuit_compile_definitions(AprilTagTrackers)
+simsuit_links(AprilTagTrackers)
+
+
 # ====== Compiler Options ======
 
 # Set the root of includes, rather than relative
 target_include_directories(AprilTagTrackers PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}"
+    #ORSNARO EDIT
+	#"${CMAKE_CURRENT_SOURCE_DIR}/liblo/x64-Debug-vs2022win64generator"
 )
 
 if (BUILD_SHARED_LIBS)

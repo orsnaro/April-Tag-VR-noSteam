@@ -17,6 +17,10 @@ set(ATT_DEBUG_DRIVER_SOURCES
 if (WIN32)
     list(APPEND ATT_DEBUG_DRIVER_SOURCES
         IPC/WindowsNamedPipe.cpp
+
+        #ORSNARO EDIT: OSC sources for later if i managed to use their testing and debugging sode
+        IPC/OSC.cpp
+        IPC/OSC_utils.cpp
     )
 else()
     list(APPEND ATT_DEBUG_DRIVER_SOURCES
@@ -51,6 +55,7 @@ target_compile_definitions(debug_driver PRIVATE
 )
 
 att_target_platform_definitions(debug_driver)
+simsuit_compile_definitions(debug_driver)
 
 # ====== Compiler Options ======
 
