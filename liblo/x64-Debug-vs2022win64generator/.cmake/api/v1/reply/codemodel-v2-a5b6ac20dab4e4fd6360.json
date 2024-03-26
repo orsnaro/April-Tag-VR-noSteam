@@ -1,0 +1,178 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-82739375422a3257af25.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "liblo",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-2d8b570d885556fd90a3.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-0547edf02cd46841610b.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cpp_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cpp_test-Debug-a17f458e553b58a742ac.json",
+					"name" : "cpp_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "example_client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example_client-Debug-4feb26cb6086ffba3aef.json",
+					"name" : "example_client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "example_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example_server-Debug-1ca4ad8d1db9d1007012.json",
+					"name" : "example_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "example_tcp_echo_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example_tcp_echo_server-Debug-d473d9defff379d913d2.json",
+					"name" : "example_tcp_echo_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "liblo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-liblo-Debug-0af1cec32b80d5e7a362.json",
+					"name" : "liblo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "nonblocking_server_example::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-nonblocking_server_example-Debug-01f5aefcc541e3ea03d6.json",
+					"name" : "nonblocking_server_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "oscdump::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-oscdump-Debug-d9c51d2737b395f79281.json",
+					"name" : "oscdump",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "oscsend::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-oscsend-Debug-3fe58ebb14519621aafa.json",
+					"name" : "oscsend",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "oscsendfile::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-oscsendfile-Debug-37aefa0fc21156e0b8ea.json",
+					"name" : "oscsendfile",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "subtest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-subtest-Debug-93002fcb5fc24677cb54.json",
+					"name" : "subtest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_bidirectional_tcp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_bidirectional_tcp-Debug-24e12653e78d85b54712.json",
+					"name" : "test_bidirectional_tcp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "testlo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-testlo-Debug-f0329d20b5e90bc81296.json",
+					"name" : "testlo",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator",
+		"source" : "C:/liblo-0.32/cmake"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

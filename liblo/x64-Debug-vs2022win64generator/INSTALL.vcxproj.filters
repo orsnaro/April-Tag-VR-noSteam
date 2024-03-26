@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\CMakeFiles\5a970cfefaaeeda6004b24d030797b33\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7FC0E323-3DC2-3A0A-B839-B25698966930}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/liblo.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/oscdump.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/oscsend.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/oscsendfile.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/testlo.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/subtest.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/test_bidirectional_tcp.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/cpp_test.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/example_client.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/example_server.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/example_tcp_echo_server.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/nonblocking_server_example.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/RUN_TESTS.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/INSTALL.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/ALL_BUILD.dir
+C:/liblo-0.32/cmake/out/build/x64-Debug-vs2022win64generator/CMakeFiles/ZERO_CHECK.dir

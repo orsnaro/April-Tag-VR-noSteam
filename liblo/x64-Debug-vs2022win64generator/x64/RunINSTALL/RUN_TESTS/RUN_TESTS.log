@@ -1,0 +1,57 @@
+﻿  1>
+  Test project C:/liblo-0.32/cmake/out/build/x64-Debug(vs2022win64generator)
+      Start 1: testlo
+  Could not find executable tests/testlo
+  Looked in the following places:
+  tests/testlo
+  tests/testlo.exe
+  tests/RunINSTALL/testlo
+  tests/RunINSTALL/testlo.exe
+  RunINSTALL/tests/testlo
+  RunINSTALL/tests/testlo.exe
+  Unable to find executable: tests/testlo
+  1/3 Test #1: testlo ...........................***Not Run   0.00 sec
+      Start 2: test-bidirectional-tcp
+  Could not find executable tests/test_bidirectional_tcp
+  Looked in the following places:
+  tests/test_bidirectional_tcp
+  tests/test_bidirectional_tcp.exe
+  tests/RunINSTALL/test_bidirectional_tcp
+  tests/RunINSTALL/test_bidirectional_tcp.exe
+  RunINSTALL/tests/test_bidirectional_tcp
+  RunINSTALL/tests/test_bidirectional_tcp.exe
+  Unable to find executable: tests/test_bidirectional_tcp
+  2/3 Test #2: test-bidirectional-tcp ...........***Not Run   0.00 sec
+      Start 3: cpp_test
+  Could not find executable tests/cpp_test
+  Looked in the following places:
+  tests/cpp_test
+  tests/cpp_test.exe
+  tests/RunINSTALL/cpp_test
+  tests/RunINSTALL/cpp_test.exe
+  RunINSTALL/tests/cpp_test
+  RunINSTALL/tests/cpp_test.exe
+  Unable to find executable: tests/cpp_test
+  3/3 Test #3: cpp_test .........................***Not Run   0.00 sec
+  
+  0% tests passed, 3 tests failed out of 3
+  
+  Total Test time (real) =   0.01 sec
+  
+  The following tests FAILED:
+  	  1 - testlo (Not Run)
+  	  2 - test-bidirectional-tcp (Not Run)
+  	  3 - cpp_test (Not Run)
+  Errors while running CTest
+  Output from these tests are in: C:/liblo-0.32/cmake/out/build/x64-Debug(vs2022win64generator)/Testing/Temporary/LastTest.log
+  Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: The command "setlocal
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe" --force-new-ctest-process -C RunINSTALL
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd" exited with code 8.

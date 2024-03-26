@@ -1,0 +1,24 @@
+﻿  oscsendfile.c
+C:\liblo-0.32\src\tools\oscsendfile.c(82,18): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_send_bundle referenced in function send_file
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_new referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_free referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_int32 referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_float referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_string referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_int64 referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_double referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_char referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_midi referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_true referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_false referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_nil referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_message_add_infinitum referenced in function create_message
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_address_set_ttl referenced in function main
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_bundle_new referenced in function send_file
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_bundle_add_message referenced in function send_file
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_timetag_now referenced in function send_file
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_address_new referenced in function main
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_address_new_from_url referenced in function main
+oscsendfile.obj : error LNK2019: unresolved external symbol lo_address_errstr referenced in function main
+C:\liblo-0.32\cmake\out\build\x64-Debug(vs2022win64generator)\tools\Debug\oscsendfile.exe : fatal error LNK1120: 21 unresolved externals

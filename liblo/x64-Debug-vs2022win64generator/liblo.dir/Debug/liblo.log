@@ -1,0 +1,38 @@
+﻿  address.c
+  blob.c
+  bundle.c
+  message.c
+C:\liblo-0.32\src\bundle.c(294,9): warning C4267: 'function': conversion from 'size_t' to 'u_long', possible loss of data
+C:\liblo-0.32\src\message.c(1011,32): warning C4244: 'function': conversion from '__int64' to 'long', possible loss of data
+C:\liblo-0.32\src\message.c(1189,17): warning C4244: 'return': conversion from 'int64_t' to 'lo_hires', possible loss of data
+  method.c
+  send.c
+C:\liblo-0.32\src\send.c(308,21): warning C4244: '=': conversion from 'SOCKET' to 'int', possible loss of data
+C:\liblo-0.32\src\send.c(326,19): warning C4244: '=': conversion from 'SOCKET' to 'int', possible loss of data
+C:\liblo-0.32\src\send.c(329,50): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+C:\liblo-0.32\src\send.c(483,30): warning C4267: 'function': conversion from 'size_t' to 'u_long', possible loss of data
+C:\liblo-0.32\src\send.c(509,42): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+C:\liblo-0.32\src\send.c(510,45): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+C:\liblo-0.32\src\send.c(532,36): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+  server.c
+C:\liblo-0.32\src\server.c(606,32): warning C4244: '=': conversion from 'SOCKET' to 'int', possible loss of data
+C:\liblo-0.32\src\server.c(680,56): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+C:\liblo-0.32\src\server.c(1216,39): warning C4267: '+=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\liblo-0.32\src\server.c(1234,27): warning C4267: '-=': conversion from 'size_t' to 'int', possible loss of data
+C:\liblo-0.32\src\server.c(1250,35): warning C4244: '+=': conversion from 'ssize_t' to 'unsigned int', possible loss of data
+C:\liblo-0.32\src\server.c(1359,24): warning C4244: '=': conversion from 'SOCKET' to 'int', possible loss of data
+C:\liblo-0.32\src\server.c(1563,55): warning C4244: '=': conversion from 'double' to 'long', possible loss of data
+C:\liblo-0.32\src\server.c(1515,63): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\liblo-0.32\src\server.c(1549,32): warning C4244: 'initializing': conversion from 'SOCKET' to 'int', possible loss of data
+C:\liblo-0.32\src\server.c(1397,15): warning C4101: 'k': unreferenced local variable
+C:\liblo-0.32\src\server.c(1710,27): warning C4244: '=': conversion from 'double' to 'long', possible loss of data
+C:\liblo-0.32\src\server.c(1711,59): warning C4244: '=': conversion from 'double' to 'long', possible loss of data
+C:\liblo-0.32\src\server.c(2007,35): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+  server_thread.c
+  timetag.c
+  version.c
+  Generating Code...
+  LINK : C:\liblo-0.32\cmake\out\build\x64-Debug(vs2022win64generator)\Debug\liblo.dll not found or not built by the last incremental link; performing full link
+C:/liblo-0.32/cmake/out/build/x64-Debug(vs2022win64generator)/src/liblo.def(2): warning LNK4017: DESCRIPTION statement not supported for the target platform; ignored
+     Creating library C:/liblo-0.32/cmake/out/build/x64-Debug(vs2022win64generator)/Debug/liblo.lib and object C:/liblo-0.32/cmake/out/build/x64-Debug(vs2022win64generator)/Debug/liblo.exp
+  liblo.vcxproj -> C:\liblo-0.32\cmake\out\build\x64-Debug(vs2022win64generator)\Debug\liblo.dll

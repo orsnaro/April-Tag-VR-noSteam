@@ -1,0 +1,11 @@
+C:\liblo-0.32\src\address.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\address.obj
+C:\liblo-0.32\src\blob.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\blob.obj
+C:\liblo-0.32\src\bundle.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\bundle.obj
+C:\liblo-0.32\src\message.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\message.obj
+C:\liblo-0.32\src\method.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\method.obj
+C:\liblo-0.32\src\pattern_match.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\pattern_match.obj
+C:\liblo-0.32\src\send.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\send.obj
+C:\liblo-0.32\src\server.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\server.obj
+C:\liblo-0.32\src\timetag.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\timetag.obj
+C:\liblo-0.32\src\version.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\version.obj
+C:\liblo-0.32\src\server_thread.c;C:\liblo-0.32\cmake\out\build\x64-Debug-vs2022win64generator\liblo.dir\Debug\server_thread.obj

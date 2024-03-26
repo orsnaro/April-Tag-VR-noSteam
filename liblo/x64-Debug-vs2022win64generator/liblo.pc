@@ -1,0 +1,10 @@
+prefix=C:/liblo-0.32/cmake/out/install/x64-Debug-vs2022win64generator
+exec_prefix=${prefix}
+libdir=C:/liblo-0.32/cmake/out/install/x64-Debug-vs2022win64generator/lib
+includedir=C:/liblo-0.32/cmake/out/install/x64-Debug-vs2022win64generator/include
+
+Name: liblo
+Version: 0.32
+Description: A lightweight OSC server/client library
+Libs: -L${libdir} -llo  
+Cflags: -I${includedir}

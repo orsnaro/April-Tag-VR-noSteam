@@ -1,0 +1,7 @@
+﻿  nonblocking_server_example.c
+nonblocking_server_example.obj : error LNK2019: unresolved external symbol lo_server_new referenced in function main
+nonblocking_server_example.obj : error LNK2019: unresolved external symbol lo_server_recv_noblock referenced in function main
+nonblocking_server_example.obj : error LNK2019: unresolved external symbol lo_server_add_method referenced in function main
+nonblocking_server_example.obj : error LNK2019: unresolved external symbol lo_server_get_socket_fd referenced in function main
+nonblocking_server_example.obj : error LNK2019: unresolved external symbol lo_arg_pp referenced in function generic_handler
+C:\liblo-0.32\cmake\out\build\x64-Debug(vs2022win64generator)\examples\Debug\nonblocking_server_example.exe : fatal error LNK1120: 5 unresolved externals
