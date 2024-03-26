@@ -1,4 +1,24 @@
-## This guide is also available in the following languages:
+#This fork will be more directed to work with Reality SimSuit project and Willie's ExitSuit 
+
+
+#Important Notes:
+> [!WARNING]  
+> This branch is for the experimental Apriltag VR Tracker noSteam Version (many files are built in debug config)
+
+> [!WARNING]  
+> READ THIS Before Using The [detailed Build Guide](detailed-build-guide) with This Fork:
+> This is built using `Visual Studio 17.10 preview 2` and didn't work for me on `vs17.9`
+> ensure that VS IDE has Those Workloads At least: `Desktop development with C++`,`Universal Windows Platform development`
+> other dev Env specs: `Win10 Pro 10.0.1.19.045 build 19045 X64`, `cmake 3.27.1`, `cmder` and `powershell 7.4.1`
+> dont forget to do the `liblo.dll` copy step to `install\` at end for OSC and the whole exe to work! (the detailed tutorial lacks this step)
+
+
+> [!TIP]  
+> most of the logs for SimSuit,OSC and noSteam feature related events will be  written to `C:\VS2022_repos\April-Tag-VR-FullBody-Tracker\install\logs\simSuitAprilLog.txt` rest of Apiltag Tracker logs will be in `C:\VS2022_repos\April-Tag-VR-FullBody-Tracker\install\logs\*.log`
+
+
+
+##(OUTDATED) This guide is also available in the following languages:
 
 - [汉语 (Simplified Chinese)](/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%95%99%E7%A8%8B%EF%BC%88SimplifiedChineseTutorial%EF%BC%89.md)
 
@@ -59,18 +79,24 @@ sudo apt-get install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev lib
 
 
 ### Windows prerequisites
-Open in Visual Studio 17.8 Preview 2 or newer[(Includes a fix)](https://github.com/microsoft/vcpkg/issues/31565#issuecomment-1723267213), and use the Visual Studio Command Prompt.
+Open in Visual Studio 17.10 Preview 2 [(Includes a fix)](https://github.com/microsoft/vcpkg/issues/31565#issuecomment-1723267213), and use the Visual Studio Command Prompt.
 
 
 ### Clone and build
 ```
-git clone https://github.com/ju1ce/April-Tag-VR-FullBody-Tracker
-cd April-Tag-VR-FullBody-Tracker
+git clone https://github.com/ju1ce/April-Tag-VR-noSteam
+cd April-Tag-VR-noSteam
 cmake -B build
 cmake --build build --config Release --target install
+copy .\liblo\x64-Debug-vs2022win64generator\Debug\liblo.dll .\install\
 ```
 
+
+ #### detailed build guide
 That should be it! [A more detailed guide is up](https://github.com/ju1ce/April-Tag-VR-FullBody-Tracker/blob/master/WindowsBuild_Simple.md), and we are always there to help on the (discord server)[https://discord.gg/g2ctkXB4bb]!
+
+
+
 
 ### Troubleshooting
 
