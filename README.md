@@ -1,24 +1,34 @@
-#This fork will be more directed to work with Reality SimSuit project and Willie's ExitSuit 
+# 🚀 VISIT THE NEW [OSC noSteam v1.0 Branch](https://github.com/orsnaro/April-Tag-VR-noSteam/tree/ATT_OSC_noSteam) 
+
+## This fork will be more directed to work with Reality SimSuit project and Willie's ExitSuit 
 
 
-#Important Notes:
+# ORSNARO Important Notes:
 > [!WARNING]  
 > This branch is for the experimental Apriltag VR Tracker noSteam Version (many files are built in debug config)
 
 > [!WARNING]  
 > READ THIS Before Using The [detailed Build Guide](detailed-build-guide) with This Fork:
-> This is built using `Visual Studio 17.10 preview 2` and didn't work for me on `vs17.9`
-> ensure that VS IDE has Those Workloads At least: `Desktop development with C++`,`Universal Windows Platform development`
-> other dev Env specs: `Win10 Pro 10.0.1.19.045 build 19045 X64`, `cmake 3.27.1`, `cmder` and `powershell 7.4.1`
-> dont forget to do the `liblo.dll` copy step to `install\` at end for OSC and the whole exe to work! (the detailed tutorial lacks this step)
+
+* This is built using `Visual Studio 17.10 preview 2` and didn't work for me on `vs17.9`
+* ensure that VS IDE has Those Workloads At least: `Desktop development with C++`,`Universal Windows Platform development`
+* other dev Env specs: `Win10 Pro 10.0.1.19.045 build 19045 X64`, `cmake 3.27.1`, `cmder` or `powershell 7.4.1`
+* dont forget to do the `liblo.dll` copy step to `install\` at end for OSC and the whole exe to work! (the detailed tutorial lacks this step)
 
 
 > [!TIP]  
-> most of the logs for SimSuit,OSC and noSteam feature related events will be  written to `C:\VS2022_repos\April-Tag-VR-FullBody-Tracker\install\logs\simSuitAprilLog.txt` rest of Apiltag Tracker logs will be in `C:\VS2022_repos\April-Tag-VR-FullBody-Tracker\install\logs\*.log`
+> most of the logs for SimSuit,OSC and noSteam feature related events will be  written to `C:\VS2022_repos\April-Tag-VR-noSteam\install\logs\simSuitAprilLog.txt`. The rest of Apiltag Tracker logs will be in `C:\VS2022_repos\April-Tag-VR-noSteam\install\logs\*.log`
 
+# 🎯TODO:
+- [ ] use json parser
+- [ ] change AprilSide and Target Address and paths in-App (read them from file)
+- [ ] enhance The UI/UX
+- [ ] make OSC non-blocking 
 
+# Start of original README.md <sub>(with minor adds to build section)</sub>
+-------
 
-##(OUTDATED) This guide is also available in the following languages:
+## (OUTDATED) This guide is also available in the following languages:
 
 - [汉语 (Simplified Chinese)](/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%95%99%E7%A8%8B%EF%BC%88SimplifiedChineseTutorial%EF%BC%89.md)
 
@@ -67,7 +77,7 @@ Donations are apreciated but not necessary!
 
 The project is a CMake project. You should be able to build it either using CMake and your favourite IDE/compiler, or some IDEs already support opening cmake projects directly.
 
-### Linux prerequisites
+### (NOT TESTED IN THIS FORK)Linux prerequisites
 ```
 sudo apt-get update -y
 sudo apt-get install -y build-essential tar curl zip unzip pkg-config autoconf libudev-dev freeglut3-dev libgtk-3-dev libsecret-1-dev libgcrypt20-dev libsystemd-dev ffmpeg
