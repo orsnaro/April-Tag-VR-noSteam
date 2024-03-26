@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <string>
 
+
 inline std::ostream& operator<<(std::ostream& os, const Pose& pose)
 {
     return os << pose.position.x << ' '
@@ -56,8 +57,16 @@ void VerifyAndParseResponse(std::string_view buffer, std::string_view expectName
     std::istringstream ss{std::string(buffer)};
     std::string name;
     ss >> name;
-    if (name.empty()) throw utils::MakeError("no response from driver");
-    if (name != expectName) throw utils::MakeError("command response indicated failure: ", buffer);
+    if (name.empty())
+    {
+        SimSuit::logFile("From VRDdriver.cpp VerifyAndParseResponse():ERROR! no response from driver(target) ");
+        throw utils::MakeError("no response from driver");
+    }
+    if (name != expectName)
+    {
+        SimSuit::logFile("From VRDdriver.cpp VerifyAndParseResponse():ERROR! got: " + name + ". awaited command response from target mismatched!");
+        throw utils::MakeError("command response indicated failure: ", buffer);
+    }
     ((ss >> outArgs), ...);
 }
 TEST_CASE("VerifyAndParseResponse")
@@ -94,6 +103,7 @@ VRDriver::VRDriver(const cfg::List<cfg::TrackerUnit>& trackers)
 
 void VRDriver::UpdateTracker(int id, Pose pose, double frameTime, double smoothing)
 {
+    SimSuit::logFile("From VRDdriver.cpp: attempt UpdateTracker cmd...");
     const std::string cmd = BuildCommand("updatepose", id, pose, frameTime, smoothing);
     const std::string_view res = mBridge->SendRecv(cmd);
     VerifyAndParseResponse(res, "updated");
@@ -101,6 +111,7 @@ void VRDriver::UpdateTracker(int id, Pose pose, double frameTime, double smoothi
 
 void VRDriver::CmdUpdateStation(int id, Pose pose)
 {
+    SimSuit::logFile("From VRDdriver.cpp: attempt CmdUpdateStation cmd...");
     const std::string cmd = BuildCommand("updatestation", id, pose);
     const std::string_view res = mBridge->SendRecv(cmd);
     VerifyAndParseResponse(res, "updated");
@@ -108,6 +119,7 @@ void VRDriver::CmdUpdateStation(int id, Pose pose)
 
 void VRDriver::SetSmoothing(double factor, double additional)
 {
+    SimSuit::logFile("From VRDdriver.cpp: attempt SetSmoothing cmd...");
     constexpr int saved = 120;
     const std::string cmd = BuildCommand("settings", saved, factor, additional);
     const std::string_view res = mBridge->SendRecv(cmd);
@@ -116,6 +128,7 @@ void VRDriver::SetSmoothing(double factor, double additional)
 
 int VRDriver::CmdGetTrackerCount()
 {
+    SimSuit::logFile("From VRDdriver.cpp: attempt GetTrackerCount cmd...");
     const std::string_view res = mBridge->SendRecv(BuildCommand("numtrackers"));
     int count = -1;
     std::string versionStr;
@@ -133,6 +146,7 @@ int VRDriver::CmdGetTrackerCount()
 
 void VRDriver::CmdAddTracker(std::string_view name, std::string_view role)
 {
+    SimSuit::logFile("From VRDdriver.cpp: attempt AddTracker cmd...");
     const std::string cmd = BuildCommand("addtracker", name, role);
     const std::string_view res = mBridge->SendRecv(cmd);
     VerifyAndParseResponse(res, "added");
@@ -140,12 +154,14 @@ void VRDriver::CmdAddTracker(std::string_view name, std::string_view role)
 
 void VRDriver::CmdAddStation()
 {
+    SimSuit::logFile("From VRDdriver.cpp: attempt AddStation cmd...");
     const std::string_view res = mBridge->SendRecv(BuildCommand("addstation"));
     VerifyAndParseResponse(res, "added");
 }
 
 VRDriver::GetTrackerResult VRDriver::GetTracker(int id, double timeOffset)
 {
+    SimSuit::logFile("From VRDdriver.cpp: attempt GetTracker cmd...");
     const std::string cmd = BuildCommand("gettrackerpose", id, timeOffset);
     const std::string_view res = mBridge->SendRecv(cmd);
     int outId = -1;

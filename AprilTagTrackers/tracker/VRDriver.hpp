@@ -53,7 +53,7 @@ private:
     // 'addstation' -> 'added'
     void CmdAddStation();
 
-    std::unique_ptr<IPC::IClient> mBridge;
+    std::unique_ptr<IPC::IClient> mBridge; //IClient is the base of our OSC class so we r effectively creating pointer to our OSC client and will use it's IPC::OSC::SendRecv() impl.
 };
 
 } // namespace tracker

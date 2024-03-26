@@ -1,5 +1,5 @@
-#ifdef ATT_OS_WINDOWS
-
+//later this osc macro my be defined in cmake depending on some env variables or so...
+#if defined(ATT_OS_WINDOWS) && !defined(FORCE_OSC) //USE WinNamedPipe
 #    include "IPC.hpp"
 #    include "utils/Error.hpp"
 #    include "utils/Log.hpp"
@@ -36,20 +36,20 @@ std::string_view WindowsNamedPipe::SendRecv(std::string message)
     return GetBufferStringView(static_cast<int>(responseLength));
 }
 
-namespace
+namespace //unnamed namespaces makes it only accessible in this file!
 {
 
 class WindowsNamedPipeConnection final : public IConnection
 {
 public:
     explicit WindowsNamedPipeConnection(HANDLE pipe) : mPipe(pipe) {}
-    ~WindowsNamedPipeConnection() final
+    ~WindowsNamedPipeConnection() final // more verbose `final override`: https://stackoverflow.com/a/29412622/15006369
     {
         if (mPipe == nullptr) return;
         if (FAILED(DisconnectNamedPipe(mPipe))) ATT_LOG_ERROR("disconnect named pipe: ", GetLastError());
     }
 
-    void Send(std::string_view message) final
+    void Send(std::string_view message) final // more verbose `final override`: https://stackoverflow.com/a/29412622/15006369
     {
         DWORD bytesWritten = 0;
         if (FAILED(WriteFile(mPipe, message.data(), message.size(), &bytesWritten, nullptr)))
@@ -58,7 +58,7 @@ public:
         }
     }
 
-    std::string_view Recv() final
+    std::string_view Recv() final // more verbose `final override`: https://stackoverflow.com/a/29412622/15006369
     {
         DWORD bytesRead = 0;
         if (FAILED(ReadFile(mPipe, GetBufferPtr(), GetBufferSize(), &bytesRead, nullptr)))
@@ -112,6 +112,4 @@ private:
 
 } // namespace IPC
 
-#else
-#    error WindowsNamedPipe.cpp only compiled on windows
 #endif

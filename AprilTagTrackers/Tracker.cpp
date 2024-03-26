@@ -4,6 +4,7 @@
 #include "config/TrackerUnit.hpp"
 #include "Helpers.hpp"
 #include "ImageDrawing.hpp"
+#include "IPC/IPC.hpp"
 #include "math/CVHelpers.hpp"
 #include "tracker/MainLoopRunner.hpp"
 #include "tracker/TrackerUnit.hpp"
@@ -29,6 +30,9 @@
 #include <random>
 #include <sstream>
 #include <vector>
+
+//ORSNARO EDIT: to use SimSuit::logFile()
+#include "IPC/OSC_IPC.hpp"
 
 Tracker::Tracker(UserConfig& _userConfig, CalibrationConfig& _calibConfig, ArucoConfig& _arucoConfig, const Localization& _lc)
     : mCapture(&_userConfig.videoStreams[0]->camera),
@@ -138,11 +142,13 @@ void Tracker::CameraLoop()
             }
         }
         mCameraFrame.Set(frame);
-
+//ORSNARO EDIT: disable OpenVR steam
+#if !defined(FORCE_OSC)
         if (mVRClient && mVRClient->IsInit())
         {
             mVRClient->PollEvents();
         }
+#endif
     }
     mCapture.Close();
     gui->SetStatus(false, StatusItem::Camera);
@@ -534,21 +540,31 @@ void Tracker::StartTrackerCalib()
 
 void Tracker::StartConnection()
 {
+
     mVRDriver = tracker::VRDriver{user_config.trackers};
+//ORSNARO EDIT : disable OpenVR
+#if !defined(FORCE_OSC)
     if (!user_config.disableOpenVrApi)
     {
         mVRClient = std::make_unique<tracker::OpenVRClient>();
     }
     else
     {
+        SimSuit::logFile("from Tracker.cpp: OpenVR disabled using MockOpenVRClient...(disbaled if FORCE_OSC defined)");
+#    if !defined(FORCE_OSC)
         mVRClient = std::make_unique<tracker::MockOpenVRClient>();
+#    endif
     }
+
+    //ORSNARO EDIT : disable OpenVR
     if (!mVRClient->CanInit())
     {
+        SimSuit::logFile("Unable to initialize steamvr client, is your hmd connected?");
         gui->ShowPopup("Unable to initialize steamvr client, is your hmd connected?", PopupStyle::Error);
         return;
     }
     mVRClient->Init();
+#endif
     gui->SetStatus(true, StatusItem::Driver);
 }
 
@@ -610,13 +626,24 @@ void Tracker::Start()
         mainThread.join();
         return;
     }
-    if (!mVRClient->IsInit() || !mVRDriver)
+    //ORSNARO EDIT
+    if (!mVRDriver)
     {
+        SimSuit::logFile("from Tracker.cpp: Error starting tracker. possibly due to VRDriver Issue");
         gui->ShowPopup(lc.TRACKER_STEAMVR_NOTCONNECTED, PopupStyle::Error);
         mainThreadRunning = false;
         mainThread.join();
         return;
     }
+
+    //ORSNARO EDIT
+    /* if (!mVRClient->IsInit() || !mVRDriver)
+    {
+        gui->ShowPopup(lc.TRACKER_STEAMVR_NOTCONNECTED, PopupStyle::Error);
+        mainThreadRunning = false;
+        mainThread.join();
+        return;
+    }*/
 
     gui->SetStatus(true, StatusItem::Tracker);
 
@@ -810,6 +837,7 @@ void Tracker::MainLoop()
         }
         catch (const std::exception& e)
         {
+            SimSuit::logFile("From Tracker.cpp MainLoop() : Something went wrong when estimating tracker pose.Try again !");
             ATT_LOG_ERROR(e.what());
             mainThreadRunning = false;
             gui->ShowPopup(lc.TRACKER_DETECTION_SOMETHINGWRONG, PopupStyle::Error);
@@ -823,7 +851,9 @@ namespace
 
 void EnsureTrackersConfigSize(UserConfig& userConfig, CalibrationConfig& calibConfig)
 {
-    const Index expected = std::max(userConfig.trackers.GetSize(), calibConfig.trackers.GetSize());
+    const Index expected = userConfig.trackers.GetSize() > calibConfig.trackers.GetSize() ? userConfig.trackers.GetSize() : calibConfig.trackers.GetSize();
+    //const Index expected = std::max(userConfig.trackers.GetSize(), calibConfig.trackers.GetSize()); //some how it produces compile error >.>
+
     userConfig.trackers.Resize(expected);
     calibConfig.trackers.Resize(expected);
 }

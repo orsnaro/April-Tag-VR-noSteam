@@ -14,7 +14,14 @@ GUI::MainFrame::MainFrame(RefPtr<ITrackerControl> _tracker, const Localization& 
       tracker(_tracker), lc(_lc), config(_config),
       previews{PreviewFrame{"Preview [" + ToWXString(_config.windowTitle) + "]"}, PreviewFrame{"Camera Preview [" + ToWXString(_config.windowTitle) + "]"}}
 {
-    SetIcon(APRILTAG_XPM);
+    ///ORSNARO EDIT
+    wxIconLocation RealitySimSuitIconLoc;
+    wxString iconRelPath = "../RealitySimSuit.ico";
+    RealitySimSuitIconLoc.SetFileName(iconRelPath);
+    SetIcon(wxIcon::wxIcon((RealitySimSuitIconLoc)));
+    ///ORSNARO EDIT
+
+    //SetIcon(APRILTAG_XPM); //set our icon instead above
     if (!config.windowTitle.empty()) SetTitle(ToWXString(config.windowTitle));
 
     statusBar = NewWindow<wxStatusBar>(static_cast<wxFrame*>(this));
@@ -233,13 +240,13 @@ void GUI::MainFrame::CreateCameraPage(RefPtr<wxNotebook> pages)
                 tracker->StartTrackerCalib();
             }})
         .Add(StretchSpacer{})
-        .Add(Label{lc.CAMERA_START_STEAMVR})
+        .Add(Label{lc.CAMERA_START_STEAMVR})//TODO: alter this button behaviour to noSteam
         .Add(CheckBoxButton{lc.CAMERA_DISABLE_OPENVR_API, [this](auto& evt)
             {
                 config.disableOpenVrApi = evt.IsChecked();
                 config.Save();
             }})
-        .Add(Button{lc.CAMERA_CONNECT, [this](auto&)
+        .Add(Button{lc.CAMERA_CONNECT, [this](auto&)//TODO: alter this button behaviour to noSteam
             {
                 tracker->StartConnection();
             }})

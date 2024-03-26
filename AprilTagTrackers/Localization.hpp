@@ -105,7 +105,8 @@ public:
 
     // TODO: Group names in structs, instead of long ids (stored in sub-objects in yaml)
 
-    T(APP_TITLE) = "Juices VR Marker Tracking";
+    //T(APP_TITLE) = "Juices VR Marker Tracking";
+    T(APP_TITLE) = "Reality SimSuit VR Marker Tracking";
 
     REFLECTABLE_FIELD(Word, word);
     REFLECTABLE_FIELD(StatusBar, status);
@@ -121,8 +122,8 @@ public:
     T(CAMERA_START_CAMERA) = "1. Start/Stop camera";
     T(CAMERA_CALIBRATE_CAMERA) = "2. Calibrate camera";
     T(CAMERA_CALIBRATE_TRACKERS) = "3. Calibrate trackers";
-    T(CAMERA_START_STEAMVR) = "4. Start up SteamVR!";
-    T(CAMERA_CONNECT) = "5. Connect to SteamVR";
+    T(CAMERA_START_STEAMVR) = "4. Start up SteamVR! (DISABLED!#FORCE_OSC)";
+    T(CAMERA_CONNECT) = "5. Try Connect OSC (instead of Connect to SteamVR)";
     T(CAMERA_START_DETECTION) = "6. Start/Stop";
     T(CAMERA_PREVIEW_CAMERA) = "Preview camera";
     T(CAMERA_PREVIEW_CALIBRATION) = "Preview calibration";

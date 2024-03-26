@@ -86,9 +86,13 @@ public:
             return;
         }
 
+//ORSNARO EDIT: disable OpenVR steam
+#if !defined(FORCE_OSC)
         ATT_ASSERT(mVRClient->IsInit());
         mVRClient->UpdateInputActions();
         const tracker::ButtonAction inputButton = mVRClient->GetButtonAction();
+#endif
+
         cfg::ManualCalib::Real calib = gui->GetManualCalib();
 
         const auto now = utils::SteadyTimer::Now();
@@ -98,6 +102,9 @@ public:
             ATT_LOG_INFO("auto timeout of playspace calibration");
             gui->SetManualCalibVisible(false);
         }
+
+//ORSNARO EDIT: disable OpenVR steam
+#if !defined(FORCE_OSC)
 
         if (inputButton == tracker::ButtonAction::GrabCamera) // logic for position button
         {
@@ -184,6 +191,7 @@ public:
             // update the calib in the gui as it wont be modified anymore
             gui->SetManualCalib(calib);
         }
+#endif
         // update the pre calculated calibration transformations
         playspace->Set(gui->GetManualCalib());
         mVRDriver->UpdateStation(playspace->GetStationPoseOVR());

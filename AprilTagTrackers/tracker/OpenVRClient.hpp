@@ -3,7 +3,7 @@
 #include "Helpers.hpp"
 
 #include <opencv2/core/types.hpp>
-#include <openvr.h>
+#include <openvr.h> //only used within OpenVRClient (else of file dont need it)
 
 namespace tracker
 {

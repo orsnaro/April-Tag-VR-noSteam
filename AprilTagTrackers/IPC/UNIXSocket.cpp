@@ -15,8 +15,8 @@
 using std::size_t;
 using sockaddr_un_t = struct ::sockaddr_un;
 using sockaddr_t = struct ::sockaddr;
-
-namespace
+        
+namespace //unnamed namespaces makes it only accessible in this file!
 {
 
 template <typename TFn, typename... TArgs>
