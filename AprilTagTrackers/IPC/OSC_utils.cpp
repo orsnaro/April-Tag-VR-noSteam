@@ -32,6 +32,7 @@ int waitLoop(suitBuffer& gatewayBuf, int _timeout)
     return _timeout;
 }
 
+static bool isNewLogSession = true;
 States logFile(std::string txt, std::string path)
 {
     time_t now = time(0);
@@ -45,6 +46,11 @@ States logFile(std::string txt, std::string path)
     std::ofstream oFile(path, std::ios::app);
     if (oFile.is_open())
     {
+        if (isNewLogSession) {
+            isNewLogSession = false;
+            oFile << "\n\n" << "--------------------------| NEW LOG SESSION START: " << datetime_str << " |--------------------------" << '\n';
+        }
+
         oFile << datetime_str << " " << txt << '\n';
         oFile.close();
     }

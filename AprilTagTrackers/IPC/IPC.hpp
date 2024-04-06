@@ -54,7 +54,7 @@ class IClient : public IOBuffer<1024>
 public:
     virtual ~IClient() = default;
     /// @return temporary view of buffer, invalidated when SendRecv is called again
-    [[nodiscard]] virtual std::string_view SendRecv(std::string message) = 0;
+    [[nodiscard]] virtual std::string_view SendRecv(std::string message, std::string extraPath = "") = 0;
 };
 
 
@@ -72,9 +72,9 @@ public:
     //even if failed after invoke it counts as an invoke!
     static std::atomic<int> InvokesCount; //only one copy initiated with first instance and shared with all objects
 
-    OSC(std::string rootPathTargetOSC); //rootPathTargetOSC="AprilTagPipeIn
+    OSC(std::string rootPathTargetOSC); //rootPathTargetOSC="ApriltagPipeIn
     //OSC(std::string rootPathTargetOSC, std::string pathAprilSideOSC, std::string ipAprilSideOSC, std::string portAprilSideOSC);
-    std::string_view SendRecv(std::string message) final;
+    std::string_view SendRecv(std::string message, std::string extraPath = "") final;
 
     SimSuit::OSC_noSteamGateway mGateway;
 
@@ -86,6 +86,7 @@ private:
     std::string mIpAprilSideOSC;
     std::string mPortAprilSideOSC;
 
+    bool isVrChat; //now we have client: VRChat(april side need a bit of modfy to fully work with it) and Our Unityapp(ready to work with april side)
 };
 
 class WindowsNamedPipe : public IClient
@@ -93,7 +94,7 @@ class WindowsNamedPipe : public IClient
 public:
     explicit WindowsNamedPipe(std::string pipeName);
 
-    std::string_view SendRecv(std::string message) final;
+    std::string_view SendRecv(std::string message, std::string extraPath = "") final;
 
 private:
     std::string mPipeName;
@@ -104,7 +105,7 @@ class UNIXSocket : public IClient
 public:
     explicit UNIXSocket(std::string socketName);
 
-    std::string_view SendRecv(std::string message) final;
+    std::string_view SendRecv(std::string message, std::string extraPath = "") final;
 
 private:
     std::string mSocketPath;

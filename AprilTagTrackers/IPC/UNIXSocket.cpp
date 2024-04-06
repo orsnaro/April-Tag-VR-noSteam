@@ -71,7 +71,7 @@ namespace IPC
 UNIXSocket::UNIXSocket(std::string socketName)
     : mSocketPath("/tmp/" + std::move(socketName)) {}
 
-std::string_view UNIXSocket::SendRecv(std::string message)
+std::string_view UNIXSocket::SendRecv(std::string message, std::string extraPath = "")
 {
     try
     {

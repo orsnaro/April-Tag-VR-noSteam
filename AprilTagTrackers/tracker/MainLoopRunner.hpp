@@ -97,7 +97,7 @@ public:
 
             unit.SetWasVisibleToDriverLastFrame(isValid);
             cv::Point2d maskCenter;
-            if (isValid) // if the pose from steamvr was valid, save the predicted position and rotation
+            if (isValid) // if the pose from steamvr/OSCtarget was valid, save the predicted position and rotation
             {
                 if (previewIsVisible) cv::drawFrameAxes(drawImg, camCalib->cameraMatrix, camCalib->distortionCoeffs, pose.rotation.toRotVec(), math::ToVec(pose.position), 0.10F);
 

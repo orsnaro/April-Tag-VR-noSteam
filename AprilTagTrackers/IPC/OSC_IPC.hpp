@@ -28,8 +28,8 @@ namespace SimSuit
 enum class States
 {
     FAIL = -1,
-    PENDING = 1,
-    OK = 0
+    OK = 0,
+    PENDING = 1
 };
 struct suitBuffer
 {

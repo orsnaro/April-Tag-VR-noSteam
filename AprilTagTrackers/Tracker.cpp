@@ -837,8 +837,9 @@ void Tracker::MainLoop()
         }
         catch (const std::exception& e)
         {
-            SimSuit::logFile("From Tracker.cpp MainLoop() : Something went wrong when estimating tracker pose.Try again !");
-            ATT_LOG_ERROR(e.what());
+            const char* e_cstr = e.what();
+            SimSuit::logFile("From Tracker.cpp MainLoop() : Something went wrong when estimating tracker pose. details: " + std::string(e_cstr) );
+            ATT_LOG_ERROR(e_cstr);
             mainThreadRunning = false;
             gui->ShowPopup(lc.TRACKER_DETECTION_SOMETHINGWRONG, PopupStyle::Error);
         }
