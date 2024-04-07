@@ -54,16 +54,17 @@ template <typename... TArgs>
 void VerifyAndParseResponse(std::string_view buffer, std::string_view expectName, TArgs&... outArgs)
 {
     std::istringstream ss{std::string(buffer)};
+    SimSuit::logFile("From VRDriver.cpp VerifyAndParseResponse(): Verifying response: '" + std::string(buffer) + "' from driver(target) ");
     std::string name;
     ss >> name;
     if (name.empty())
     {
-        SimSuit::logFile("From VRDdriver.cpp VerifyAndParseResponse():ERROR! no response from driver(target) ");
+        SimSuit::logFile("From VRDriver.cpp VerifyAndParseResponse(): ERROR! no response from driver(target) ");
         throw utils::MakeError("no response from driver");
     }
     if (name != expectName)
     {
-        SimSuit::logFile("From VRDdriver.cpp VerifyAndParseResponse():ERROR! got: " + name + ". awaited command response from target mismatched!");
+        SimSuit::logFile("From VRDdriver.cpp VerifyAndParseResponse(): ERROR! got: " + name + ". awaited command response from target mismatched!");
         throw utils::MakeError("command response indicated failure: ", buffer);
     }
     ((ss >> outArgs), ...);
@@ -92,6 +93,7 @@ VRDriver::VRDriver(const cfg::List<cfg::TrackerUnit>& trackers)
         int index = 0;
         for (const auto& tracker : trackers.AsRange())
         {
+            SimSuit::logFile("From VRDriver() constructor: ADDING tracker id(zero-idx): " + std::to_string(index));
             AddTracker(index++, tracker.role);
         }
 
@@ -115,7 +117,7 @@ void VRDriver::UpdateTracker(int id, Pose pose, double frameTime, double smoothi
 
 void VRDriver::CmdUpdateStation(int id, Pose pose)
 {
-    SimSuit::logFile("From VRDdriver.cpp: attempt CmdUpdateStation cmd... id: " + std::to_string(id + 1));
+    SimSuit::logFile("From VRDriver.cpp: attempt CmdUpdateStation cmd... id: " + std::to_string(id + 1));
     const std::string cmd = BuildCommand("updatestation", id, pose);
     std::string _extraPath = "/tracking/station/" + std::to_string(id + 1); //id is zero indexed and OSC paths are 1 indexed (if causes issues fix path id to 1) using only one camear anyway for multiple reasons (see line 185)
     const std::string_view res = mBridge->SendRecv(cmd, _extraPath);
@@ -134,7 +136,7 @@ void VRDriver::SetSmoothing(double factor, double additional)
 
 int VRDriver::CmdGetTrackerCount()
 {
-    SimSuit::logFile("From VRDdriver.cpp: startup.. attempt GetTrackerCount cmd...");
+    SimSuit::logFile("From VRDriver.cpp: startup.. attempt GetTrackerCount cmd...");
 
     std::string _extraPath = "/tracking/trackers/count";
     const std::string_view res = mBridge->SendRecv(BuildCommand("numtrackers"), _extraPath);
@@ -153,7 +155,7 @@ int VRDriver::CmdGetTrackerCount()
     {
         std::string e_msg{"invalid tracker count: " + std::to_string(count) +  " received msg: " + std::string(res)};
 
-        SimSuit::logFile("From VRDdriver.cpp: CmdGetTrackerCount() : Error!: " + e_msg);
+        SimSuit::logFile("From VRDriver.cpp: CmdGetTrackerCount() : Error!: " + e_msg);
         throw std::runtime_error(e_msg);
     }
 
@@ -162,17 +164,18 @@ int VRDriver::CmdGetTrackerCount()
     {
         std::string e_msg2{"incompatible bridge driver: " + versionStr + " expected: " + std::string(res)};
 
-        SimSuit::logFile("From VRDdriver.cpp: CmdGetTrackerCount() : Error(id=2)!: " + e_msg2);
+        SimSuit::logFile("From VRDriver.cpp: CmdGetTrackerCount() : Error(id=2)!: " + e_msg2);
         throw std::runtime_error(e_msg2);
         
     }
 
+    SimSuit::logFile("From VRDriver.cpp GetTrackerCount() got tracker count from OSCtarget = " + std::to_string(count));
     return count;
 }
 
 void VRDriver::CmdAddTracker(std::string_view name, std::string_view role)
 {
-    SimSuit::logFile("From VRDdriver.cpp: attempt AddTracker cmd...");
+    SimSuit::logFile("From VRDriver.cpp: attempt AddTracker cmd...");
     const std::string cmd = BuildCommand("addtracker", name, role);
     std::string _extraPath = "/tracking/trackers/add";
     const std::string_view res = mBridge->SendRecv(cmd, _extraPath);
@@ -181,7 +184,7 @@ void VRDriver::CmdAddTracker(std::string_view name, std::string_view role)
 
 void VRDriver::CmdAddStation()
 {
-    SimSuit::logFile("From VRDdriver.cpp: attempt AddStation cmd...");
+    SimSuit::logFile("From VRDriver.cpp: attempt AddStation cmd...");
     std::string _extraPath = "/tracking/station/1"; //using one station only (april devs said more only increases the playspace not accuracy of detection and more than 1 camera may cause issues)
     const std::string_view res = mBridge->SendRecv(BuildCommand("addstation"), _extraPath);
     VerifyAndParseResponse(res, "added");
@@ -189,9 +192,9 @@ void VRDriver::CmdAddStation()
 
 VRDriver::GetTrackerResult VRDriver::GetTracker(int id, double timeOffset)
 {
-    SimSuit::logFile("From VRDdriver.cpp: attempt GetTracker cmd... id: " + std::to_string(id + 1));
+    SimSuit::logFile("From VRDriver.cpp: attempt GetTracker cmd... id: " + std::to_string(id + 1));
     const std::string cmd = BuildCommand("gettrackerpose", id, timeOffset);
-    std::string _extraPath = "/tracking/trackers/" + (id == 9 ? "head" : std::to_string(id + 1)); //id is zero indexed but osc tracker paths are 1 indexed and might have names for specific tracers ids also!
+    std::string _extraPath = "/tracking/trackers/" + (id == 8 ? "head" : std::to_string(id + 1)); //id is zero indexed but osc tracker paths are 1 indexed and might have names for specific tracers ids also!
     const std::string_view res = mBridge->SendRecv(cmd, _extraPath);
 
     int outId = -1;
