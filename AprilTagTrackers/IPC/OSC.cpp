@@ -163,7 +163,7 @@ OSC::OSC(std::string rootPathTargetOSC) : mPathTargetOSC('/' + rootPathTargetOSC
         //return "-1";
  # pragma endregion
 
-        SimSuit::suitBuffer gatewayRet{"", SimSuit::States::PENDING}; //Initial values for new Connection
+        SimSuit::suitBuffer* gatewayRetPtr = new SimSuit::suitBuffer{"", SimSuit::States::PENDING}; //Initial values for new Connection
         
         //HERE init your April side server using any C++ OSClibrary is ok
         lo::ServerThread aprilSideServerTh(NULL, mPortAprilSideOSC, NULL, mIpAprilSideOSC, NULL);
@@ -172,7 +172,7 @@ OSC::OSC(std::string rootPathTargetOSC) : mPathTargetOSC('/' + rootPathTargetOSC
             std::string err_msg = "ERROR! Couldn't Create April's side Server thread!";
             SimSuit::logFile(err_msg);
             std::cout << err_msg << std::endl;
-            gatewayRet.state = SimSuit::States::FAIL;
+            gatewayRetPtr->state = SimSuit::States::FAIL;
             return "-1"; //ERROR
         }
 
@@ -197,7 +197,7 @@ OSC::OSC(std::string rootPathTargetOSC) : mPathTargetOSC('/' + rootPathTargetOSC
 
         //liblo OSC  string types are marked with: 's' or 'S' (there is slight diff but ok mostly)
         aprilSideServerTh.add_method(mPathAprilOSC, "s",
-                                     [&gatewayRet, this](lo_arg** argv, int argc) 
+                                     [&gatewayRetPtr, this](lo_arg** argv, int argc) 
                                      {
                                          std::string cString_received = &argv[0]->s;
 
@@ -205,44 +205,45 @@ OSC::OSC(std::string rootPathTargetOSC) : mPathTargetOSC('/' + rootPathTargetOSC
                                          SimSuit::logFile(recvMsg);
                                          std::cout << recvMsg << '\n';
 
-                                         gatewayRet.data = cString_received;
-                                         gatewayRet.state = SimSuit::States::OK; //only when one invoke cycle is done OK ( one send one recieve )
+                                         gatewayRetPtr->data = cString_received;
+                                         gatewayRetPtr->state = SimSuit::States::OK; //only when one invoke cycle is done OK ( one send one recieve )
                                          fflush(stdout);
                                      }
         ); 
 
 
         aprilSideServerTh.start();
-        mGateway.run(message, aprilSideServerTh, addressAprilSideOSC, fullPathTargetOSC, gatewayRet);
-        InvokesCount++;
+        mGateway.run(message, aprilSideServerTh, addressAprilSideOSC, fullPathTargetOSC, *gatewayRetPtr);
 
         #pragma region TESTING
         //START: FOR TESTING FUNCTION runTst ONLY
-        //mGateway.runTst(message, aprilSideServerTh, addressAprilSideOSC, fullPathTargetOSC, gatewayRet);
+        //mGateway.runTst(message, aprilSideServerTh, addressAprilSideOSC, fullPathTargetOSC, *gatewayRetPtr);
         //END: FOR TESTING FUNCTION runTst ONLY
         #pragma endregion
         
-        //why timeout==500? 5sec 10*500 = 5000ms
-        int timeout = SimSuit::waitLoop(gatewayRet, 500);
+        //why timeout==1000? 5sec 10*500 = 10000ms (my shrink it after TESTING IS DONE)
+        int timeout = SimSuit::waitLoop(*gatewayRetPtr, 1000);
 
         //stop to handle the slight chance that Target responds immediately after timing out
+        std::string timeoutMsg = "from OSC.hpp SendRecv() Invoke ID: " + std::to_string(InvokesCount) + " " + (timeout > 0 ? "April OSC SIDE GOT Response in Time!" : "TimedOut! OR FAILED due to other issue");
         aprilSideServerTh.stop();
 
-        std::string timeoutMsg = "from OSC.hpp SendRecv() Invoke ID: " + std::to_string(InvokesCount) + " " + (timeout > 0 ? "April OSC SIDE GOT Response in Time!" : "TimedOut! OR FAILED due to other issue");
         SimSuit::logFile(timeoutMsg);
         std::cout << timeoutMsg << std::endl;
 
-        if (gatewayRet.state == SimSuit::States::OK and gatewayRet.data != "" and timeout > 0)
+        if (gatewayRetPtr->state == SimSuit::States::OK and gatewayRetPtr->data != "" and timeout > 0)
         {
-            std::string msgFromTarget = gatewayRet.data;
+            std::string* msgFromTarget = &gatewayRetPtr->data;
             SimSuit::logFile("Invoke ID: " + std::to_string(InvokesCount) + " " + "PASSED initial check! validating the response: '"  + msgFromTarget +  "'...");
 
             ///TODO: first arg is msg string 2nd isOutGoing
             //updateTrackersInfoMap(msg, false)
 
-            return msgFromTarget;
+            InvokesCount++;
+            return std::string_view(*msgFromTarget);
         }//else
-        return "-1"; //FAILED or timed out //SimSuit::suitBuffer gatewayRet{"", SimSuit::States::PENDING}; //Initial values for new Connection
+        InvokesCount++;
+        return std::string_view("-1"); //FAILED or timed out //SimSuit::suitBuffer gatewayRet{"", SimSuit::States::PENDING}; //Initial values for new Connection
     }
 
     #pragma region AprilSideCallbackMethods
