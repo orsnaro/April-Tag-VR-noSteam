@@ -132,12 +132,11 @@ OSC::OSC(std::string rootPathTargetOSC) : mPathTargetOSC('/' + rootPathTargetOSC
 
     std::string_view OSC::SendRecv(std::string message, std::string extraPath)
     {
-        SimSuit::logFile("From OSC.cpp::SendRecv() got string" + message);
-
-        if (!isVrChat) { mPathAprilOSC = ""; } //VrChat paths doesnt start with "/ApriltagPipeIn" out unity does!
+        if (isVrChat) { mPathTargetOSC = ""; } //VrChat paths doesnt start with "/ApriltagPipeIn" out unity does!
         //complete the full path
-        mPathAprilOSC = mPathAprilOSC + extraPath;
+        std::string fullPathTargetOSC = mPathTargetOSC + extraPath;
 
+        SimSuit::logFile("From OSC.cpp::SendRecv() got string:" + message + " sending to: " + fullPathTargetOSC);
 #    pragma region TESTING
         //std::istringstream ss_message{std::string(message)};
         //std::string cmdHead;
@@ -202,7 +201,7 @@ OSC::OSC(std::string rootPathTargetOSC) : mPathTargetOSC('/' + rootPathTargetOSC
                                      {
                                          std::string cString_received = &argv[0]->s;
 
-                                         std::string recvMsg = "path: " + mPathAprilOSC + " at April Side Received MSG: " + "\"" + cString_received + "\"";
+                                         std::string recvMsg = "FROM OSC.cpp aprilSideServerTh CallBack func  with path: " + mPathAprilOSC + " at April Side Received MSG: " + "\"" + cString_received + "\"";
                                          SimSuit::logFile(recvMsg);
                                          std::cout << recvMsg << '\n';
 
@@ -214,12 +213,12 @@ OSC::OSC(std::string rootPathTargetOSC) : mPathTargetOSC('/' + rootPathTargetOSC
 
 
         aprilSideServerTh.start();
-        mGateway.run(message, aprilSideServerTh, addressAprilSideOSC, mPathTargetOSC, gatewayRet);
+        mGateway.run(message, aprilSideServerTh, addressAprilSideOSC, fullPathTargetOSC, gatewayRet);
         InvokesCount++;
 
         #pragma region TESTING
         //START: FOR TESTING FUNCTION runTst ONLY
-        //mGateway.runTst(message, aprilSideServerTh, addressAprilSideOSC, mPathTargetOSC, gatewayRet);
+        //mGateway.runTst(message, aprilSideServerTh, addressAprilSideOSC, fullPathTargetOSC, gatewayRet);
         //END: FOR TESTING FUNCTION runTst ONLY
         #pragma endregion
         
@@ -235,10 +234,10 @@ OSC::OSC(std::string rootPathTargetOSC) : mPathTargetOSC('/' + rootPathTargetOSC
 
         if (gatewayRet.state == SimSuit::States::OK and gatewayRet.data != "" and timeout > 0)
         {
-            SimSuit::logFile("Invoke ID: " + std::to_string(InvokesCount) + " " + "PASSED initial check! validating the response...");
             std::string msgFromTarget = gatewayRet.data;
+            SimSuit::logFile("Invoke ID: " + std::to_string(InvokesCount) + " " + "PASSED initial check! validating the response: '"  + msgFromTarget +  "'...");
 
-            ///TODO first arg is msg string 2nd isOutGoing
+            ///TODO: first arg is msg string 2nd isOutGoing
             //updateTrackersInfoMap(msg, false)
 
             return msgFromTarget;

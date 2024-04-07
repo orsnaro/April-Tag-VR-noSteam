@@ -119,7 +119,7 @@ inline std::unique_ptr<IClient> CreateDriverClient()
     return std::make_unique<WindowsNamedPipe>(driverPath);
 #elif defined(ATT_OS_WINDOWS) && defined(FORCE_OSC)
     //ORSNARO EDIT
-    SimSuit::logFile("From IPC.hpp CreatDriverclient() is Invoked!: `return std::make_unique<OSC>(driverPath);` ");
+    SimSuit::logFile("From IPC.hpp CreatDriverclient() is Invoked!: `return std::make_unique<OSC>(driverPath);` (INIT APRIL APP)  ");
     return std::make_unique<OSC>(driverPath);
 #else
     return std::make_unique<UNIXSocket>(driverPath);
