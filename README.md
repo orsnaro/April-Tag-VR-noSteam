@@ -95,7 +95,7 @@ Open in Visual Studio 17.10 Preview 2 [(Includes a fix)](https://github.com/micr
 
 #### Clone and build
 ```
-git clone https://github.com/ju1ce/April-Tag-VR-noSteam
+git clone https://github.com/orsnaro/April-Tag-VR-noSteam
 cd April-Tag-VR-noSteam
 cmake -B build
 cmake --build build --config Release --target install
