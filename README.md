@@ -1,5 +1,5 @@
 > [!CAUTION]
-> MOVED TO AZURE REPOS platform due to GitHub's data/Quota/bandwidth limitations: [Azure repo link](https://dev.azure.com/Reality-SimSuit/Reality-SimSuit/_git/April-Tag-VR-noSteam)
+> MOVED TO AZURE REPOS platform due to GitHub's data/Quota/bandwidth limitations: [Azure repo link](https://dev.azure.com/Reality-SimSuits/Reality-SimSuit1/_git/April-Tag-VR-noSteam)
 
 # 🚀 VISIT THE NEW [OSC noSteam v1.0 Branch](https://github.com/orsnaro/April-Tag-VR-noSteam/tree/ATT_OSC_noSteam) 
 
