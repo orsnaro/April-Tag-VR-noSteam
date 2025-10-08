@@ -416,6 +416,8 @@ out*/
 
 # installed by cmake
 vcpkg/
+.vcpkg/
+vcpkg_installed/
 
 # downloaded dependencies
 deps*/
